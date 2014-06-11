@@ -16,7 +16,11 @@
     IBOutlet UILabel* screenName;
     IBOutlet UILabel* dateNTime;
     IBOutlet UILabel* tweetPost;
+    IBOutlet UIImageView* postBanner;
 }
+
+@property (nonatomic, weak)IBOutlet UIImageView* postImage;
+@property (nonatomic, weak)IBOutlet UIView* popUpView;
 
 @property (nonatomic, strong)PostInformation* currentCell;
 

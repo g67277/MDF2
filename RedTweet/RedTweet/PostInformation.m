@@ -10,14 +10,16 @@
 
 @implementation PostInformation
 
-@synthesize timeDate, tweetText, userScreenName;
+@synthesize timeDate, tweetText, userScreenName, userImage, userBanner;
 
-- (id) initWithpostInfo: (NSString*)screenName text: (NSString*)text timeDateInfo: (NSString*) timeDateInfo{
+- (id) initWithpostInfo: (NSString*)screenName text: (NSString*)text timeDateInfo: (NSString*) timeDateInfo postImage: (UIImage*) postImage postBanner: (UIImage*) postBanner{
     
     if (self = [super init]) {
         timeDate = [timeDateInfo copy];
         tweetText = [text copy];
         userScreenName = [screenName copy];
+        userImage = [postImage copy];
+        userBanner = [postBanner copy];
     }
     
     return self;

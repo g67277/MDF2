@@ -1,20 +1,19 @@
 //
-//  DetailsViewController.m
+//  FriendDetailsViewController.m
 //  RedTweet
 //
-//  Created by Nazir Shuqair on 6/4/14.
+//  Created by Nazir Shuqair on 6/9/14.
 //  Copyright (c) 2014 Me Time Studios. All rights reserved.
 //
 
-#import "DetailsViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "FriendDetailsViewController.h"
 
-@interface DetailsViewController ()
+@interface FriendDetailsViewController ()
 
 @end
 
-@implementation DetailsViewController
-@synthesize postImage, popUpView;
+@implementation FriendDetailsViewController
+@synthesize profileImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,11 +27,8 @@
 - (void)viewDidLoad
 {
     
-    self.postImage.layer.cornerRadius = self.postImage.frame.size.width / 2;
-    self.postImage.clipsToBounds = YES;
-    
-    self.popUpView.layer.cornerRadius = 10.0f;
-    self.popUpView.clipsToBounds = YES;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.clipsToBounds = YES;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,13 +36,12 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     
-    screenName.text = self.currentCell.userScreenName;
-    tweetPost.text = self.currentCell.tweetText;
-    dateNTime.text = self.currentCell.timeDate;
-    postImage.image = self.currentCell.userImage;
-    postBanner.image = self.currentCell.userBanner;
+    screenName.text = self.currentCell.friendScreenName;
+    profileImage.image = self.currentCell.friendProfileImage;
+    //followers.text = self.currentCell.friendFollowerCount;
+    //statusCount.text = self.currentCell.friendStatusesCount;
+    
 }
-
 
 - (void)didReceiveMemoryWarning
 {

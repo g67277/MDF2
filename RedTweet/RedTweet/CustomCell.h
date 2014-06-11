@@ -15,6 +15,8 @@
     
 }
 
-- (void) refreshCellWithInfo: (NSString*) postTxt postDate: (NSString*) postDate;
+@property (nonatomic, weak) IBOutlet UIImageView* cellImage;
+
+- (void) refreshCellWithInfo: (NSString*) postTxt postDate: (NSString*) postDate postImage: (UIImage*) postImage;
 
 @end

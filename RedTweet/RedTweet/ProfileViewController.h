@@ -7,18 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProfileInfo.h"
+
 
 @interface ProfileViewController : UIViewController{
+        
+    NSString* userName;
+    NSString* userDisc;
+    NSString* userNumOfFollowers;
+    NSString* userNumOfFriends;
+    UIImage* userImage;
+    UIImage* userBanner;
     
-    ProfileInfo *profile;
+    IBOutlet UILabel* userNameLabel;
+    IBOutlet UILabel* userDiscLabel;
+    IBOutlet UILabel* userNumOfFollowersLabel;
+    IBOutlet UILabel* userNumOfFriendsLabel;
+    IBOutlet UIImageView* userBannerImage;
+
     
 }
 
-@property (nonatomic, strong)IBOutlet UILabel* userName;
-@property (nonatomic, strong)IBOutlet UILabel* userDisc;
-@property (nonatomic, strong)IBOutlet UILabel* userNumOfFollowers;
-@property (nonatomic, strong)IBOutlet UILabel* userNumOfFriends;
+@property (nonatomic, weak) IBOutlet UIImageView* userImageView;
+@property (nonatomic, weak) IBOutlet UIView* popUpView;
+
+@property (nonatomic, readonly) NSString* userName;
+
 
 
 @end

@@ -27,7 +27,10 @@
 		81264FE319401E9400553198 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81264FE219401E9400553198 /* CustomCell.m */; };
 		81264FE61940215A00553198 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81264FE51940215A00553198 /* DetailsViewController.m */; };
 		81264FE91940236400553198 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81264FE81940236400553198 /* ProfileViewController.m */; };
-		81264FEC19413D5C00553198 /* ProfileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 81264FEB19413D5C00553198 /* ProfileInfo.m */; };
+		81D1972119468F1600A2556B /* FriendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D1972019468F1600A2556B /* FriendInfo.m */; };
+		81D197241946925200A2556B /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D197231946925200A2556B /* FriendCell.m */; };
+		81D197271946A8CE00A2556B /* FriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D197261946A8CE00A2556B /* FriendDetailsViewController.m */; };
+		81D197291947FF0300A2556B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D197281947FF0300A2556B /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +73,13 @@
 		81264FE51940215A00553198 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		81264FE71940236400553198 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		81264FE81940236400553198 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		81264FEA19413D5C00553198 /* ProfileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileInfo.h; sourceTree = "<group>"; };
-		81264FEB19413D5C00553198 /* ProfileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileInfo.m; sourceTree = "<group>"; };
+		81D1971F19468F1600A2556B /* FriendInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfo.h; sourceTree = "<group>"; };
+		81D1972019468F1600A2556B /* FriendInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfo.m; sourceTree = "<group>"; };
+		81D197221946925200A2556B /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
+		81D197231946925200A2556B /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		81D197251946A8CE00A2556B /* FriendDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailsViewController.h; sourceTree = "<group>"; };
+		81D197261946A8CE00A2556B /* FriendDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailsViewController.m; sourceTree = "<group>"; };
+		81D197281947FF0300A2556B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D197291947FF0300A2556B /* QuartzCore.framework in Frameworks */,
 				81264FDD19401D7D00553198 /* Social.framework in Frameworks */,
 				81264FDB19401D7700553198 /* Accounts.framework in Frameworks */,
 				81264FA819401D5A00553198 /* CoreGraphics.framework in Frameworks */,
@@ -122,6 +131,7 @@
 		81264FA419401D5A00553198 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81D197281947FF0300A2556B /* QuartzCore.framework */,
 				81264FDC19401D7D00553198 /* Social.framework */,
 				81264FDA19401D7700553198 /* Accounts.framework */,
 				81264FA519401D5A00553198 /* Foundation.framework */,
@@ -150,8 +160,12 @@
 				81264FE51940215A00553198 /* DetailsViewController.m */,
 				81264FE71940236400553198 /* ProfileViewController.h */,
 				81264FE81940236400553198 /* ProfileViewController.m */,
-				81264FEA19413D5C00553198 /* ProfileInfo.h */,
-				81264FEB19413D5C00553198 /* ProfileInfo.m */,
+				81D1971F19468F1600A2556B /* FriendInfo.h */,
+				81D1972019468F1600A2556B /* FriendInfo.m */,
+				81D197221946925200A2556B /* FriendCell.h */,
+				81D197231946925200A2556B /* FriendCell.m */,
+				81D197251946A8CE00A2556B /* FriendDetailsViewController.h */,
+				81D197261946A8CE00A2556B /* FriendDetailsViewController.m */,
 			);
 			path = RedTweet;
 			sourceTree = "<group>";
@@ -282,12 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D197241946925200A2556B /* FriendCell.m in Sources */,
 				81264FE019401E4400553198 /* PostInformation.m in Sources */,
 				81264FBC19401D5A00553198 /* ViewController.m in Sources */,
 				81264FB619401D5A00553198 /* AppDelegate.m in Sources */,
+				81D1972119468F1600A2556B /* FriendInfo.m in Sources */,
 				81264FE61940215A00553198 /* DetailsViewController.m in Sources */,
 				81264FE91940236400553198 /* ProfileViewController.m in Sources */,
-				81264FEC19413D5C00553198 /* ProfileInfo.m in Sources */,
+				81D197271946A8CE00A2556B /* FriendDetailsViewController.m in Sources */,
 				81264FB219401D5A00553198 /* main.m in Sources */,
 				81264FE319401E9400553198 /* CustomCell.m in Sources */,
 			);
@@ -494,6 +510,7 @@
 				81264FD619401D5A00553198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81264FD719401D5A00553198 /* Build configuration list for PBXNativeTarget "RedTweetTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +519,7 @@
 				81264FD919401D5A00553198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -56,20 +56,7 @@
 
 - (void) refreshTwitter {
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Loading" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    [alertView show];
-    
-    NSInteger num = 0;
-    for (NSInteger i = 0; i < 1000; i++) {
-        num++;
-    }
-    
-    NSLog(@"num is : %ld", (long)num);
-    if (num == 1000) {
         
-    }
-    
     // This is the accounts store
     ACAccountStore *accountStore = [[ACAccountStore alloc]init];
     if (accountStore != nil) {

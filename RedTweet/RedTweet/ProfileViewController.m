@@ -15,6 +15,7 @@
 @end
 
 @implementation ProfileViewController
+@synthesize userName, userImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +28,18 @@
 
 - (void)viewDidLoad
 {
-    profile = [[ProfileInfo alloc]init];
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
+    self.userImageView.clipsToBounds = YES;
+    
+    self.popUpView.layer.cornerRadius = 10.0f;
+    self.popUpView.clipsToBounds = YES;
+    
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+
+- (void) viewWillAppear:(BOOL)animated{
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Loading" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
@@ -48,12 +60,12 @@
                         
                         //object to use if i want a single account from array
                         ACAccount *currentAccount = [twitterAccounts objectAtIndex:0];
+                        NSString* username = currentAccount.accountDescription;
                         
                         //Twitter timeline url
                         NSString *requestString = @"https://api.twitter.com/1.1/users/show.json";
                         
-                        NSDictionary *params = [NSDictionary dictionaryWithObject:@"2230880107" forKey:@"user_id"];
-                        
+                        NSDictionary *params = [NSDictionary dictionaryWithObject:username forKey:@"screen_name"];
                         
                         //Social framework request
                         SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:requestString] parameters:params];
@@ -61,24 +73,27 @@
                         // requesting info on current account
                         [request setAccount:currentAccount];
                         
-                        
                         [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
                             
                             //if there are no errors and code is 200 (which means good to go) then serialize
                             if ((error == nil) && ([urlResponse statusCode] == 200)) {
                                 NSArray *accountDetails = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-                                
+                                NSLog(@"%@", accountDetails);
                                 
                                 NSMutableDictionary * mutableDict = [NSMutableDictionary dictionaryWithCapacity:10];
                                 [mutableDict setObject:accountDetails forKey:@"threeLetters"];
                                 NSDictionary * dict = [mutableDict valueForKey:@"threeLetters"];
-                                NSString* userNameString = [dict valueForKeyPath:@"name"];
-                                NSString* userDescriptionString = [dict valueForKeyPath:@"description"];
-                                NSString* friendCountString = [dict valueForKeyPath:@"friends_count"];
-                                NSString* followerCountString = [dict valueForKeyPath:@"followers_count"];
-                                
-                                // populating profileInfo variables
-                                [profile initWithProfileInfo:userNameString userDiscString:userDescriptionString numFollowers:followerCountString numFriends:friendCountString];
+                                userName = [dict valueForKeyPath:@"name"];
+                                userDisc = [dict valueForKeyPath:@"description"];
+                                userNumOfFriends = [dict valueForKeyPath:@"friends_count"];
+                                userNumOfFollowers = [dict valueForKeyPath:@"followers_count"];
+                                NSString* imageURl = [dict valueForKey:@"profile_image_url"];
+                                NSString* imageOriginal = [imageURl substringToIndex:[imageURl length] - 12];
+                                NSMutableString* imageOriginalSize = [NSMutableString stringWithFormat:@"%@.jpeg", imageOriginal];
+                                UIImage* postImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: imageOriginalSize]]];
+                                UIImage* postBanner = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"profile_banner_url"]]]];
+                                userImage = postImage;
+                                userBanner = postBanner;
                                 
                                 
                             }
@@ -95,23 +110,23 @@
     
     
     
-    [super viewDidLoad];
-    
-   
-    // Do any additional setup after loading the view.
 }
 
 - (void) viewDidAppear:(BOOL)animated{
     
-    // Populating labels with data after the view appears
+        // Populating labels with data after the view appears
     
-    _userName.text = [NSString stringWithFormat:@"Profile Name: %@", profile.userName];
+    userNameLabel.text = userName;
 
-    _userDisc.text = [NSString stringWithFormat:@"Description: %@",profile.userDisc];
+    userDiscLabel.text = userDisc;
     
-    _userNumOfFollowers.text = [NSString stringWithFormat:@"Followers: %@", profile.userNumOfFollowers2];
+    userNumOfFollowersLabel.text = [NSString stringWithFormat:@"%@", userNumOfFollowers];
     
-    _userNumOfFriends.text = [NSString stringWithFormat:@"Friends: %@", profile.userNumOfFriends2];
+    userNumOfFriendsLabel.text = [NSString stringWithFormat:@"%@", userNumOfFriends];
+    
+    userBannerImage.image = userBanner;
+    
+    userImageView.image = userImage;
     
 }
 
@@ -121,15 +136,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

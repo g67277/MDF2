@@ -9,21 +9,25 @@
 #import "CustomCell.h"
 
 @implementation CustomCell
+@synthesize cellImage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        // Initialization code  
         
     }
     return self;
 }
 
-- (void) refreshCellWithInfo: (NSString*) postTxt postDate: (NSString*) postDate{
+- (void) refreshCellWithInfo: (NSString*) postTxt postDate: (NSString*) postDate postImage: (UIImage*) postImage{
     
     postText.text = postTxt;
     postTimeDate.text = postDate;
+    cellImage.image = postImage;
+    self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2;
+    self.cellImage.clipsToBounds = YES;
     
 }
 
