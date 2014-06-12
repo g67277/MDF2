@@ -27,7 +27,40 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self refreshTwitter];
+    
+    // This is the accounts store
+    ACAccountStore *accountStore = [[ACAccountStore alloc]init];
+    if (accountStore != nil) {
+        // Define the accoun type (e.g. facbook, twitter, ...)
+        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        if (accountType != nil){
+            // Request permission to access the account
+            [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+                if (granted) {
+                    //Add accounts to array incase there are more than one
+                    NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
+                    if (twitterAccounts != nil) {
+                        
+                        //object to use if i want a single account from array
+                        currentAccount = [twitterAccounts objectAtIndex:0];
+                    }
+                }else{
+                    // error alert view
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Account Access!" message:@"Access not granted, please go to settings > twitter and grant RedTweet Access" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [errorMessage show];
+                    });
+                    
+                }
+            }];
+        }
+    }
+    
+    if ([twitterPosts count] < 1) {
+        
+        [self refreshTwitter];
+    }
+    
 }
 
 - (void) viewDidLayoutSubviews{
@@ -51,26 +84,7 @@
     self.profilePicture.clipsToBounds = YES;
     
     
-    // This is the accounts store
-    ACAccountStore *accountStore = [[ACAccountStore alloc]init];
-    if (accountStore != nil) {
-        // Define the accoun type (e.g. facbook, twitter, ...)
-        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        if (accountType != nil){
-            // Request permission to access the account
-            [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
-                if (granted) {
-                    //Add accounts to array incase there are more than one
-                    NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
-                    if (twitterAccounts != nil) {
-                        
-                        //object to use if i want a single account from array
-                        currentAccount = [twitterAccounts objectAtIndex:0];
-                    }
-                }
-            }];
-        }
-    }
+    
     
     
     // Method to get data
@@ -83,6 +97,12 @@
 - (void) viewDidAppear:(BOOL)animated{
     
     //profilePicture.image = profileImageHome;
+    
+}
+
+// unwinde method
+- (IBAction) done:(UIStoryboardSegue*)segue{
+    
     
 }
 
@@ -122,7 +142,9 @@
             
         }else if (segControl.selectedSegmentIndex == 1){
             
-            [self refreshFriends];
+            if ([followerInfo count] < 1) {
+                [self refreshFriends];
+            }
             
             _myTableView.hidden = true;
             _myCollectionView.hidden = false;
@@ -176,6 +198,11 @@
                 // dissmess the loading once its done
                 [alertView dismissWithClickedButtonIndex:0 animated:YES];
             });
+        }else{
+            // error alert view
+            UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Connection Lost!" message:@"Please check internet connection and try again" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [errorMessage show];
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
         }
     }];
 }
@@ -222,6 +249,11 @@
                 // dissmess the loading once its done
                 [alertView dismissWithClickedButtonIndex:0 animated:YES];
             });
+        }else{
+            // error alert view
+            UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Connection Lost!" message:@"Please check internet connection and try again" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [errorMessage show];
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
         }
     }];
 }
@@ -262,6 +294,7 @@
     NSString* followersCount = [friendDictionary valueForKey:@"followers_count"];
     NSString* statusesCount = [friendDictionary valueForKey:@"statuses_count"];
     NSString* verified = [friendDictionary valueForKey:@"verified"];
+    NSString* description = [friendDictionary valueForKey:@"description"];
     NSURL* profileBannerUrl = [NSURL URLWithString:[friendDictionary valueForKey:@"profile_banner_url"]];
     NSData* profileBannerData = [NSData dataWithContentsOfURL:profileBannerUrl];
     UIImage* profileBanner = [UIImage imageWithData:profileBannerData];
@@ -285,7 +318,7 @@
     UIImage* profileImage = [UIImage imageWithData:profileImageData];
     
     //create the object and send in the data using the method
-    FriendInfo *postInfo = [[FriendInfo alloc] initWithpostInfo:nameString folCount:followersCount statCount:statusesCount verif:verified pImage:profileImage bImage:profileBanner];
+    FriendInfo *postInfo = [[FriendInfo alloc] initWithpostInfo:nameString folCount:followersCount statCount:statusesCount verif:verified pImage:profileImage bImage:profileBanner friendDesc:description];
     
     return postInfo;
 }

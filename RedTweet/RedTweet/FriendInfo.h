@@ -14,6 +14,7 @@
     NSString *friendFollowerCount;
     NSString *friendStatusesCount;
     NSString *friendVerified;
+    NSString *friendDescription;
     UIImage *friendProfileImage;
     UIImage *friendBannerImage;
 }
@@ -22,11 +23,12 @@
 @property (nonatomic, readonly) NSString *friendFollowerCount;
 @property (nonatomic, readonly) NSString *friendStatusesCount;
 @property (nonatomic, readonly) NSString *friendVerified;
+@property (nonatomic, readonly) NSString *friendDescription;
 @property (nonatomic, readonly) UIImage *friendProfileImage;
 @property (nonatomic, readonly) UIImage *friendBannerImage;
 
 
-- (id) initWithpostInfo: (NSString*)screenName folCount: (NSString*) folCount statCount: (NSString*) statCount verif: (NSString*) verif pImage: (UIImage*)pImage bImage: (UIImage*) bImage;
+- (id) initWithpostInfo: (NSString*)screenName folCount: (NSString*) folCount statCount: (NSString*) statCount verif: (NSString*) verif pImage: (UIImage*)pImage bImage: (UIImage*) bImage friendDesc: (NSString*) friendDesc;
 
 
 @end

@@ -9,9 +9,9 @@
 #import "FriendInfo.h"
 
 @implementation FriendInfo
-@synthesize friendProfileImage, friendScreenName, friendBannerImage, friendFollowerCount, friendStatusesCount, friendVerified;
+@synthesize friendProfileImage, friendScreenName, friendBannerImage, friendFollowerCount, friendStatusesCount, friendVerified, friendDescription;
 
-- (id) initWithpostInfo: (NSString*)screenName folCount: (NSString*) folCount statCount: (NSString*) statCount verif: (NSString*) verif pImage: (UIImage*)pImage bImage: (UIImage*) bImage{
+- (id) initWithpostInfo: (NSString*)screenName folCount: (NSString*) folCount statCount: (NSString*) statCount verif: (NSString*) verif pImage: (UIImage*)pImage bImage: (UIImage*) bImage friendDesc: (NSString*) friendDesc{
     
     if (self = [super init]) {
         
@@ -21,6 +21,7 @@
         friendVerified = [verif copy];
         friendProfileImage = [pImage copy];
         friendBannerImage = [bImage copy];
+        friendDescription = [friendDesc copy];
 
     }
     

@@ -38,8 +38,10 @@
     
     screenName.text = self.currentCell.friendScreenName;
     profileImage.image = self.currentCell.friendProfileImage;
-    //followers.text = self.currentCell.friendFollowerCount;
-    //statusCount.text = self.currentCell.friendStatusesCount;
+    banner.image = self.currentCell.friendBannerImage;
+    description.text = self.currentCell.friendDescription;
+    followers.text = [NSString stringWithFormat:@"%@", self.currentCell.friendFollowerCount];
+    statusCount.text = [NSString stringWithFormat:@"%@", self.currentCell.friendStatusesCount];
     
 }
 

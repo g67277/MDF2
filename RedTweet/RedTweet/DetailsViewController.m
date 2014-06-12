@@ -14,7 +14,7 @@
 @end
 
 @implementation DetailsViewController
-@synthesize postImage, popUpView;
+@synthesize postImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +30,6 @@
     
     self.postImage.layer.cornerRadius = self.postImage.frame.size.width / 2;
     self.postImage.clipsToBounds = YES;
-    
-    self.popUpView.layer.cornerRadius = 10.0f;
-    self.popUpView.clipsToBounds = YES;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.

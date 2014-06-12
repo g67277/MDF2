@@ -78,7 +78,6 @@
                             //if there are no errors and code is 200 (which means good to go) then serialize
                             if ((error == nil) && ([urlResponse statusCode] == 200)) {
                                 NSArray *accountDetails = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-                                NSLog(@"%@", accountDetails);
                                 
                                 NSMutableDictionary * mutableDict = [NSMutableDictionary dictionaryWithCapacity:10];
                                 [mutableDict setObject:accountDetails forKey:@"threeLetters"];
@@ -100,6 +99,10 @@
                         }];
                     }
                 }else{
+                    // error alert view
+                    UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Connection Lost!" message:@"Please check internet connection and try again" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [errorMessage show];
+                    [alertView dismissWithClickedButtonIndex:0 animated:YES];
                     
                 }
             }];

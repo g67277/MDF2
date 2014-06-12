@@ -20,7 +20,6 @@
 }
 
 @property (nonatomic, weak)IBOutlet UIImageView* postImage;
-@property (nonatomic, weak)IBOutlet UIView* popUpView;
 
 @property (nonatomic, strong)PostInformation* currentCell;
 
