@@ -370,6 +370,9 @@
     
     if ([segue.identifier  isEqual: @"toDetails"]){
         
+        NSLog(@"segue %@", segue);
+        NSLog(@"sender %@", sender);
+        
         DetailsViewController* detailView = segue.destinationViewController;
         if (detailView != nil) {
             UITableViewCell *cell = (UITableViewCell*)sender;
